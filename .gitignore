@@ -1,0 +1,11 @@
+*.iml
+*.jar
+*.ini
+*.txt
+*.log
+*.crt
+*.7z
+/.idea
+/out
+/target
+/lib

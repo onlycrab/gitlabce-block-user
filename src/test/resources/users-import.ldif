@@ -1,0 +1,17 @@
+dn: dc=example,dc=com
+objectClass: domain
+objectClass: top
+dc: example
+
+dn: ou=Users,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: Users
+
+dn: cn=User One,ou=Users,dc=example,dc=com
+objectClass: user
+objectCategory: person
+cn: User
+sn: One
+uid: u1
+sAMAccountName: u1

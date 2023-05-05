@@ -1,0 +1,137 @@
+<?com.github.onlycrab.argParser.arguments.xml version="1.0" encoding="UTF-8"?>
+<arguments xmlns="argParser">
+    <info
+            description = "It is a utility for auto block and unblock Gitlab users by info from Active Directory controller.&lt;br&gt;BE CAREFUL! To avoid incorrectly blocking users, first run this utility with '-pm false', analyze the protocol, make sure that all parameters are correct, and only then specify '-pm true'."
+            usage = "java -jar gitlabce-user-ad.jar -[PARAM1] [VALUE1] ... -[PARAM_N] [VALUE_M]"
+            example = "java -jar gitlabce-user-ad.jar -g http://localhost -t mytoken -to 25 -adp ldap://localhost:389 -adu cn=admin,ou=Users,ou=MC,dc=mycompany,dc=com -adc credential -ads dc=mycompany,dc=com"
+    />
+    <argument
+            shortName="h"
+            longName="help"
+            isRequiredDeclared="false"
+            isRequiredFilled="false"
+            parameters = "STRING"
+            description = "Get help info."
+    />
+    <argument
+            shortName="v"
+            longName="version"
+            isRequiredDeclared="false"
+            isRequiredFilled="false"
+            parameters = "STRING"
+            description = "Print project version info."
+    />
+    <argument
+            shortName="ef"
+            longName="external-file"
+            isRequiredDeclared="false"
+            isRequiredFilled="true"
+            parameters = "STRING"
+            description = "External file for reading argument values. Lines format like .ini file : &lt;arg&gt;=&lt;value&gt;."
+    />
+
+    <argument
+            shortName="g"
+            longName="git"
+            isRequiredDeclared="true"
+            isRequiredFilled="true"
+            parameters = "STRING"
+            description = "Gitlab server address. If https is used, see &lt;crt(certificate)&gt; argument description."
+    />
+    <argument
+            shortName="crt"
+            longName="certificate"
+            isRequiredDeclared="false"
+            isRequiredFilled="true"
+            parameters = "STRING"
+            description = "Gitlab server certificate file. If not specified - connector will be trust any certificate."
+    />
+    <argument
+            shortName="t"
+            longName="token"
+            isRequiredDeclared="true"
+            isRequiredFilled="true"
+            parameters = "STRING"
+            description = "Gitlab access token with user edit access."
+    />
+    <argument
+            shortName="oi"
+            longName="only-identity"
+            isRequiredDeclared="false"
+            isRequiredFilled="true"
+            valueDefault = "false"
+            parameters = "BOOLEAN"
+            description = "Process only Gitlab users with identities. Users without identities will not be processed."
+    />
+    <argument
+            shortName="ex"
+            longName="exclude"
+            isRequiredDeclared="false"
+            isRequiredFilled="true"
+            parameters = "STRING"
+            description = "Exclude this usernames from processing. Usernames must be separated by comma. Example: username1,test,some_user."
+    />
+    <argument
+            shortName="ut"
+            longName="user-template"
+            isRequiredDeclared="false"
+            isRequiredFilled="true"
+            parameters = "STRING"
+            description = "Gitlab username template for processing (regular expression). If username does not match the template, then the user will not be processed."
+    />
+    <argument
+            shortName="to"
+            longName="timeout"
+            isRequiredDeclared="false"
+            isRequiredFilled="true"
+            valueDefault = "30"
+            parameters = "INTEGER"
+            description = "Gitlab API response timeout in seconds."
+    />
+    <argument
+            shortName="adp"
+            longName="ad-provider"
+            isRequiredDeclared="true"
+            isRequiredFilled="true"
+            parameters = "STRING"
+            description = "Active Directory LDAP provider. Example: ldap://localhost:389."
+    />
+    <argument
+            shortName="adu"
+            longName="ad-user"
+            isRequiredDeclared="false"
+            isRequiredFilled="true"
+            parameters = "STRING"
+            description = "User for authentication on Active Directory. Example: cn=admin,ou=Users,ou=MC,dc=mycompany,dc=com."
+    />
+    <argument
+            shortName="adc"
+            longName="ad-credentials"
+            isRequiredDeclared="false"
+            isRequiredFilled="true"
+            parameters = "STRING"
+            description = "Password for authentication on Active Directory."
+    />
+    <argument
+            shortName="ads"
+            longName="ad-search"
+            isRequiredDeclared="true"
+            isRequiredFilled="true"
+            parameters = "STRING"
+            description = "Active Directory search point path. Example: dc=mycompany,dc=com."
+    />
+    <argument
+            shortName="pm"
+            longName="prod-mode"
+            isRequiredDeclared="false"
+            isRequiredFilled="true"
+            valueDefault = "false"
+            parameters = "BOOLEAN"
+            description = "By default no one Gitlab user will be block or unblock. Set this argument to change the real status of Gitlab users."
+    />
+
+    <dependence
+            nameDependent="adu"
+            nameOn="adp"
+    />
+</arguments>
